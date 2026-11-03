@@ -1,0 +1,819 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Environmental Chemist - Interactive Booth</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&family=Quicksand:wght@500;700&display=swap');
+    
+    body {
+      font-family: 'Quicksand', sans-serif;
+      background-color: #F4FBF7;
+      color: #2D3748;
+    }
+    
+    h1, h2, h3, .font-heading {
+      font-family: 'Fredoka', sans-serif;
+    }
+
+    .bg-soft-pink { background-color: #FFF0F5; }
+    .text-pink-main { color: #FF69B4; }
+    .border-pink-main { border-color: #FF6B95; }
+    
+    .card-shadow {
+      box-shadow: 0 10px 25px -5px rgba(46, 204, 113, 0.1), 0 8px 10px -6px rgba(255, 105, 180, 0.1);
+    }
+
+    @media print {
+      body * { visibility: hidden; }
+      #certificate-area, #certificate-area * { visibility: visible; }
+      #certificate-area {
+        position: absolute;
+        left: 0; top: 0; width: 100%;
+      }
+    }
+  </style>
+</head>
+<body class="min-h-screen pb-12">
+
+  <!-- Header Section -->
+  <header class="bg-white border-b-4 border-emerald-300 py-6 px-4 shadow-sm text-center">
+    <div class="max-w-4xl mx-auto flex flex-col items-center justify-center gap-2">
+      <div class="flex items-center gap-3">
+        <span class="text-4xl">🌿</span>
+        <h1 class="text-3xl md:text-4xl font-bold text-emerald-600">Environmental Chemist</h1>
+        <span class="text-4xl">🌸</span>
+      </div>
+      <p class="text-pink-500 font-semibold text-lg">English Career Exhibition Booth</p>
+    </div>
+  </header>
+
+  <!-- Navigation Tabs -->
+  <div class="max-w-4xl mx-auto px-4 mt-6">
+    <nav class="flex flex-wrap justify-center gap-2 md:gap-4 bg-white p-2 rounded-2xl shadow-md border border-emerald-100" id="tab-buttons">
+      <button onclick="switchTab('profile')" id="btn-profile" class="tab-btn active px-4 py-2 font-bold rounded-xl text-emerald-700 bg-emerald-100 transition">
+        👩‍🔬 Profile
+      </button>
+      <button onclick="switchTab('puzzle')" id="btn-puzzle" class="tab-btn px-4 py-2 font-bold rounded-xl text-gray-600 hover:bg-emerald-50 transition">
+        🧩 Word Puzzle
+      </button>
+      <button onclick="switchTab('lab')" id="btn-lab" class="tab-btn px-4 py-2 font-bold rounded-xl text-gray-600 hover:bg-emerald-50 transition">
+        🌱 Eco-Lab Game
+      </button>
+      <button onclick="switchTab('impact')" id="btn-impact" class="tab-btn px-4 py-2 font-bold rounded-xl text-gray-600 hover:bg-emerald-50 transition">
+        📊 Eco-Impact
+      </button>
+      <button onclick="switchTab('certificate')" id="btn-certificate" class="tab-btn px-4 py-2 font-bold rounded-xl text-gray-600 hover:bg-pink-50 transition">
+        🏅 Certificate
+      </button>
+    </nav>
+  </div>
+
+  <!-- Main Content Area -->
+  <main class="max-w-4xl mx-auto px-4 mt-6">
+
+    <!-- TAB 1: CAREER PROFILE -->
+    <section id="tab-content-profile" class="tab-content space-y-6">
+      <div class="bg-white p-6 md:p-8 rounded-3xl card-shadow border-2 border-emerald-100">
+        <div class="flex items-center gap-3 mb-4">
+          <div class="p-3 bg-pink-100 rounded-2xl text-pink-500 text-2xl">💡</div>
+          <h2 class="text-2xl font-bold text-emerald-700">What is an Environmental Chemist?</h2>
+        </div>
+        <p class="text-gray-600 text-lg leading-relaxed mb-4">
+          An <strong class="text-emerald-600">Environmental Chemist</strong> is a scientist who protects our planet! They study soil, air, and water to find toxins and use nature and science to clean them up.
+        </p>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-6">
+          <div class="bg-emerald-50 p-4 rounded-2xl border border-emerald-200">
+            <h3 class="font-bold text-emerald-800 text-lg mb-1">🌊 Water Testing</h3>
+            <p class="text-gray-600 text-sm">Testing rivers and oceans to make water safe for animals and humans.</p>
+          </div>
+          <div class="bg-pink-50 p-4 rounded-2xl border border-pink-200">
+            <h3 class="font-bold text-pink-700 text-lg mb-1">🌱 Soil Healing</h3>
+            <p class="text-gray-600 text-sm">Using special plants to naturally absorb toxins from polluted ground.</p>
+          </div>
+          <div class="bg-emerald-50 p-4 rounded-2xl border border-emerald-200">
+            <h3 class="font-bold text-emerald-800 text-lg mb-1">💨 Clean Air</h3>
+            <p class="text-gray-600 text-sm">Measuring air quality and helping factories reduce chemical waste.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 2: WORD PUZZLE -->
+    <section id="tab-content-puzzle" class="tab-content hidden space-y-6">
+      <div class="bg-white p-6 md:p-8 rounded-3xl card-shadow border-2 border-emerald-100 text-center">
+        <h2 class="text-2xl font-bold text-emerald-700 mb-2">Periodic Element Word Puzzle</h2>
+        <p class="text-gray-600 mb-6">Can you spell cool words using element symbols from the Periodic Table?</p>
+
+        <div class="bg-soft-pink p-6 rounded-2xl mb-6">
+          <h3 class="font-bold text-pink-600 mb-4 text-xl">Target Word: <span id="target-word" class="text-emerald-600 underline">ICONIC</span></h3>
+          <div class="flex justify-center gap-2 mb-4" id="word-slots">
+            <!-- Dynamically Built Elements -->
+          </div>
+          <p id="puzzle-feedback" class="text-emerald-700 font-bold min-h-[24px]"></p>
+        </div>
+
+        <div class="flex flex-wrap justify-center gap-2" id="element-buttons">
+          <!-- Buttons dynamically injected -->
+        </div>
+
+        <div class="mt-8 bg-emerald-50 p-4 rounded-2xl text-left border border-emerald-200">
+          <h4 class="font-bold text-emerald-800 flex items-center gap-2">
+            <span>🔍</span> Fun Periodic Table Fact:
+          </h4>
+          <p class="text-gray-600 text-sm mt-1">
+            Did you know the letters <strong>"J"</strong> and <strong>"Q"</strong> are the only letters NEVER used as symbols in the Periodic Table!
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 3: ECO-LAB GAME -->
+    <section id="tab-content-lab" class="tab-content hidden space-y-6">
+      <div class="bg-white p-6 md:p-8 rounded-3xl card-shadow border-2 border-emerald-100">
+        <h2 class="text-2xl font-bold text-emerald-700 mb-2 text-center">Soil & Water Remediation Lab</h2>
+        <p class="text-gray-600 text-center mb-6">Select a bio-remediation tool, then click the matching polluted land to clean it!</p>
+
+        <!-- Tool Selection -->
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-3 mb-6">
+          <button onclick="selectTool('Sunflower')" id="tool-Sunflower" class="tool-btn p-3 rounded-2xl border-2 border-gray-200 hover:border-emerald-400 bg-white text-center transition">
+            <span class="text-3xl block">🌻</span>
+            <span class="font-bold text-sm text-emerald-800">Sunflower</span>
+            <span class="text-xs block text-gray-500">Absorbs Metals</span>
+          </button>
+          <button onclick="selectTool('Fern')" id="tool-Fern" class="tool-btn p-3 rounded-2xl border-2 border-gray-200 hover:border-emerald-400 bg-white text-center transition">
+            <span class="text-3xl block">🌿</span>
+            <span class="font-bold text-sm text-emerald-800">Brake Fern</span>
+            <span class="text-xs block text-gray-500">Extracts Arsenic</span>
+          </button>
+          <button onclick="selectTool('Poplar')" id="tool-Poplar" class="tool-btn p-3 rounded-2xl border-2 border-gray-200 hover:border-emerald-400 bg-white text-center transition">
+            <span class="text-3xl block">🌲</span>
+            <span class="font-bold text-sm text-emerald-800">Poplar Tree</span>
+            <span class="text-xs block text-gray-500">Cleans Oil</span>
+          </button>
+          <button onclick="selectTool('Lime')" id="tool-Lime" class="tool-btn p-3 rounded-2xl border-2 border-gray-200 hover:border-emerald-400 bg-white text-center transition">
+            <span class="text-3xl block">🧪</span>
+            <span class="font-bold text-sm text-emerald-800">Bio-Lime</span>
+            <span class="text-xs block text-gray-500">Fixes Acid</span>
+          </button>
+        </div>
+
+        <!-- Progress Bar -->
+        <div class="mb-6 bg-gray-100 p-4 rounded-2xl">
+          <div class="flex justify-between font-bold text-sm mb-1">
+            <span class="text-emerald-700">Total Cleanup Purity:</span>
+            <span id="purity-text" class="text-pink-500">0%</span>
+          </div>
+          <div class="w-full bg-gray-200 h-4 rounded-full overflow-hidden">
+            <div id="purity-bar" class="bg-emerald-400 h-full w-0 transition-all duration-500"></div>
+          </div>
+        </div>
+
+        <!-- Land Plots -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4" id="land-plots">
+          <!-- Dynamically filled plots -->
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 4: ECO-IMPACT CALCULATOR -->
+    <section id="tab-content-impact" class="tab-content hidden space-y-6">
+      <div class="bg-white p-6 md:p-8 rounded-3xl card-shadow border-2 border-emerald-100">
+        <h2 class="text-2xl font-bold text-emerald-700 mb-2 text-center">Green Impact Calculator</h2>
+        <p class="text-gray-600 text-center mb-6">See how much oxygen and clean soil plants can produce over time!</p>
+
+        <div class="space-y-6 max-w-xl mx-auto">
+          <div>
+            <label class="font-bold text-emerald-800 block mb-2">Number of Plants Grown: <span id="plant-count-val" class="text-pink-500 font-extrabold text-xl">10</span></label>
+            <input type="range" id="plant-slider" min="1" max="100" value="10" oninput="calculateImpact()" class="w-full accent-emerald-500 h-2 bg-emerald-100 rounded-lg appearance-none cursor-pointer">
+          </div>
+
+          <div class="grid grid-cols-2 gap-4 text-center">
+            <div class="bg-pink-50 p-4 rounded-2xl border border-pink-200">
+              <span class="text-3xl block">🌬️</span>
+              <span id="impact-o2" class="text-2xl font-bold text-pink-600 block">50</span>
+              <span class="text-xs text-gray-500 font-bold">Liters of O₂ Produced/Day</span>
+            </div>
+            <div class="bg-emerald-50 p-4 rounded-2xl border border-emerald-200">
+              <span class="text-3xl block">☣️</span>
+              <span id="impact-toxin" class="text-2xl font-bold text-emerald-600 block">20</span>
+              <span class="text-xs text-gray-500 font-bold">Grams Toxins Absorbed</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 5: CERTIFICATE -->
+    <section id="tab-content-certificate" class="tab-content hidden space-y-6">
+      <div class="bg-white p-6 md:p-8 rounded-3xl card-shadow border-2 border-pink-100">
+        <h2 class="text-2xl font-bold text-pink-600 mb-2 text-center">Get Your Eco-Chemist Badge</h2>
+        <p class="text-gray-600 text-center mb-6">Type your name and choose your title to generate your official badge!</p>
+
+        <div class="max-w-md mx-auto space-y-4 mb-8">
+          <div>
+            <label class="block text-gray-700 font-bold mb-1 text-sm">Your Name:</label>
+            <input type="text" id="user-name-input" placeholder="Enter your name..." oninput="updateCertificate()" class="w-full px-4 py-3 rounded-xl border-2 border-pink-200 focus:border-pink-400 outline-none font-bold text-gray-700">
+          </div>
+
+          <div>
+            <label class="block text-gray-700 font-bold mb-1 text-sm">Select Your Title:</label>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-2">
+              <button onclick="setTitle('ICONIC')" class="title-btn border-2 border-pink-300 rounded-xl p-2 font-bold text-pink-600 hover:bg-pink-50">ICONIC</button>
+              <button onclick="setTitle('CUTE')" class="title-btn border-2 border-pink-300 rounded-xl p-2 font-bold text-pink-600 hover:bg-pink-50">CUTE</button>
+              <button onclick="setTitle('HERO')" class="title-btn border-2 border-pink-300 rounded-xl p-2 font-bold text-pink-600 hover:bg-pink-50">HERO</button>
+              <button onclick="setTitle('GENIUS')" class="title-btn border-2 border-pink-300 rounded-xl p-2 font-bold text-pink-600 hover:bg-pink-50">GENIUS</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Printable Certificate Area -->
+        <div id="certificate-area" class="bg-gradient-to-br from-emerald-50 via-white to-pink-50 border-8 border-double border-emerald-300 p-8 rounded-3xl text-center max-w-lg mx-auto relative shadow-inner">
+          <div class="text-4xl mb-2">🌿 🔬 🌸</div>
+          <h3 class="text-xl font-bold text-gray-500 uppercase tracking-widest">Certificate of Achievement</h3>
+          <p class="text-sm text-gray-400 mb-4">English Career Exhibition 2026</p>
+          
+          <p class="text-gray-600">This certifies that</p>
+          <h4 id="cert-name" class="text-3xl font-extrabold text-emerald-600 my-2 font-heading">YOUR NAME</h4>
+          <p class="text-gray-600">is officially named an</p>
+          
+          <div class="my-3 inline-block bg-pink-100 border-2 border-pink-300 text-pink-600 font-black px-6 py-1 rounded-full text-lg tracking-wider" id="cert-title">
+            ICONIC ECO-CHEMIST
+          </div>
+          
+          <p class="text-xs text-gray-500 mt-4">Recognized for solving environmental challenges using green chemistry science!</p>
+        </div>
+
+        <div class="text-center mt-6">
+          <button onclick="window.print()" class="bg-emerald-500 hover:bg-emerald-600 text-white font-bold px-8 py-3 rounded-2xl shadow-lg transition">
+            🖨️ Print Badge
+          </button>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <script>
+    // TAB SWITCHING LOGIC
+    function switchTab(tabId) {
+      document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
+      document.querySelectorAll('.tab-btn').forEach(btn => {
+        btn.classList.remove('bg-emerald-100', 'text-emerald-700');
+        btn.classList.add('text-gray-600');
+      });
+
+      document.getElementById('tab-content-' + tabId).classList.remove('hidden');
+      const activeBtn = document.getElementById('btn-' + tabId);
+      activeBtn.classList.add('bg-emerald-100', 'text-emerald-700');
+    }
+
+    // WORD PUZZLE LOGIC
+    const puzzleData = {
+      word: "ICONIC",
+      elements: [
+        { symbol: "I", name: "Iodine" },
+        { symbol: "Co", name: "Cobalt" },
+        { symbol: "Ni", name: "Nickel" },
+        { symbol: "C", name: "Carbon" }
+      ]
+    };
+    let currentSelection = [];
+
+    function initPuzzle() {
+      const slotsContainer = document.getElementById('word-slots');
+      const btnsContainer = document.getElementById('element-buttons');
+      slotsContainer.innerHTML = '';
+      btnsContainer.innerHTML = '';
+
+      puzzleData.elements.forEach((el, index) => {
+        const slot = document.createElement('div');
+        slot.className = "w-14 h-16 bg-white border-2 border-dashed border-pink-300 rounded-xl flex flex-col items-center justify-center font-bold text-gray-400";
+        slot.id = `slot-${index}`;
+        slot.innerText = "?";
+        slotsContainer.appendChild(slot);
+
+        const btn = document.createElement('button');
+        btn.className = "px-4 py-2 bg-emerald-100 hover:bg-emerald-200 text-emerald-800 font-bold rounded-xl border border-emerald-300 transition";
+        btn.innerText = el.symbol;
+        btn.onclick = () => selectElement(el, index, btn);
+        btnsContainer.appendChild(btn);
+      });
+    }
+
+    function selectElement(el, index, btn) {
+      const slot = document.getElementById(`slot-${currentSelection.length}`);
+      if (slot && currentSelection.length < puzzleData.elements.length) {
+        slot.className = "w-14 h-16 bg-emerald-500 text-white rounded-xl flex flex-col items-center justify-center font-bold text-lg shadow-md";
+        slot.innerText = el.symbol;
+        currentSelection.push(el.symbol);
+        btn.disabled = true;
+        btn.classList.add('opacity-40');
+
+        if (currentSelection.length === puzzleData.elements.length) {
+          document.getElementById('puzzle-feedback').innerText = "🎉 Great Job! You spelled ICONIC using Chemistry elements!";
+        }
+      }
+    }
+
+    // ECO-LAB GAME LOGIC
+    let selectedTool = null;
+    const labPlots = [
+      { id: 1, name: "Old Mining Site", pollutant: "Heavy Metals", needed: "Sunflower", cleaned: false },
+      { id: 2, name: "River Bank", pollutant: "Arsenic Waste", needed: "Fern", cleaned: false },
+      { id: 3, name: "Factory Zone", pollutant: "Oil Solvents", needed: "Poplar", cleaned: false },
+      { id: 4, name: "Acidic Farming Field", pollutant: "High Acid", needed: "Lime", cleaned: false }
+    ];
+
+    function selectTool(toolName) {
+      selectedTool = toolName;
+      document.querySelectorAll('.tool-btn').forEach(b => b.classList.remove('border-emerald-500', 'bg-emerald-50'));
+      const activeToolBtn = document.getElementById(`tool-${toolName}`);
+      if (activeToolBtn) {
+        activeToolBtn.classList.add('border-emerald-500', 'bg-emerald-50');
+      }
+    }
+
+    function renderPlots() {
+      const container = document.getElementById('land-plots');
+      container.innerHTML = '';
+
+      labPlots.forEach(plot => {
+        const div = document.createElement('div');
+        div.className = `p-4 rounded-2xl border-2 cursor-pointer transition ${
+          plot.cleaned ? 'bg-emerald-50 border-emerald-300' : 'bg-pink-50 border-pink-200'
+        }`;
+        div.onclick = () => applyToolToPlot(plot);
+
+        div.innerHTML = `
+          <div class="flex justify-between items-center mb-2">
+            <h4 class="font-bold text-gray-800">${plot.name}</h4>
+            <span class="text-xs font-bold px-2 py-1 rounded-full ${plot.cleaned ? 'bg-emerald-200 text-emerald-800' : 'bg-pink-200 text-pink-800'}">
+              ${plot.cleaned ? 'Cleaned 🌸' : 'Polluted ☣️'}
+            </span>
+          </div>
+          <p class="text-sm text-gray-600">Pollutant: <strong>${plot.pollutant}</strong></p>
+        `;
+        container.appendChild(div);
+      });
+
+      updatePurity();
+    }
+
+    function applyToolToPlot(plot) {
+      if (!selectedTool) {
+        alert("Please choose a tool from above first!");
+        return;
+      }
+      if (plot.needed === selectedTool) {
+        plot.cleaned = true;
+        renderPlots();
+      } else {
+        alert("Wrong tool for this pollutant! Try another one.");
+      }
+    }
+
+    function updatePurity() {
+      const cleanedCount = labPlots.filter(p => p.cleaned).length;
+      const percentage = (cleanedCount / labPlots.length) * 100;
+      document.getElementById('purity-text').innerText = percentage + '%';
+      document.getElementById('purity-bar').style.width = percentage + '%';
+    }
+
+    // ECO-IMPACT CALCULATOR
+    function calculateImpact() {
+      const val = document.getElementById('plant-slider').value;
+      document.getElementById('plant-count-val').innerText = val;
+      document.getElementById('impact-o2').innerText = val * 5;
+      document.getElementById('impact-toxin').innerText = val * 2;
+    }
+
+    // CERTIFICATE LOGIC
+    let selectedTitleWord = "ICONIC";
+
+    function setTitle(title) {
+      selectedTitleWord = title;
+      updateCertificate();
+    }
+
+    function updateCertificate() {
+      const name = document.getElementById('user-name-input').value.trim();
+      document.getElementById('cert-name').innerText = name ? name.toUpperCase() : "YOUR NAME";
+      document.getElementById('cert-title').innerText = `${selectedTitleWord} ECO-CHEMIST`;
+    }
+
+    // INITIALIZE ON LOAD
+    window.onload = () => {
+      initPuzz<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Environmental Chemist - Interactive Booth</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&family=Quicksand:wght@500;700&display=swap');
+    
+    body {
+      font-family: 'Quicksand', sans-serif;
+      background-color: #F4FBF7;
+      color: #2D3748;
+    }
+    
+    h1, h2, h3, .font-heading {
+      font-family: 'Fredoka', sans-serif;
+    }
+
+    .bg-soft-pink { background-color: #FFF0F5; }
+    .text-pink-main { color: #FF69B4; }
+    .border-pink-main { border-color: #FF6B95; }
+    
+    .card-shadow {
+      box-shadow: 0 10px 25px -5px rgba(46, 204, 113, 0.1), 0 8px 10px -6px rgba(255, 105, 180, 0.1);
+    }
+
+    @media print {
+      body * { visibility: hidden; }
+      #certificate-area, #certificate-area * { visibility: visible; }
+      #certificate-area {
+        position: absolute;
+        left: 0; top: 0; width: 100%;
+      }
+    }
+  </style>
+</head>
+<body class="min-h-screen pb-12">
+
+  <!-- Header Section -->
+  <header class="bg-white border-b-4 border-emerald-300 py-6 px-4 shadow-sm text-center">
+    <div class="max-w-4xl mx-auto flex flex-col items-center justify-center gap-2">
+      <div class="flex items-center gap-3">
+        <span class="text-4xl">🌿</span>
+        <h1 class="text-3xl md:text-4xl font-bold text-emerald-600">Environmental Chemist</h1>
+        <span class="text-4xl">🌸</span>
+      </div>
+      <p class="text-pink-500 font-semibold text-lg">English Career Exhibition Booth</p>
+    </div>
+  </header>
+
+  <!-- Navigation Tabs -->
+  <div class="max-w-4xl mx-auto px-4 mt-6">
+    <nav class="flex flex-wrap justify-center gap-2 md:gap-4 bg-white p-2 rounded-2xl shadow-md border border-emerald-100" id="tab-buttons">
+      <button onclick="switchTab('profile')" id="btn-profile" class="tab-btn active px-4 py-2 font-bold rounded-xl text-emerald-700 bg-emerald-100 transition">
+        👩‍🔬 Profile
+      </button>
+      <button onclick="switchTab('puzzle')" id="btn-puzzle" class="tab-btn px-4 py-2 font-bold rounded-xl text-gray-600 hover:bg-emerald-50 transition">
+        🧩 Word Puzzle
+      </button>
+      <button onclick="switchTab('lab')" id="btn-lab" class="tab-btn px-4 py-2 font-bold rounded-xl text-gray-600 hover:bg-emerald-50 transition">
+        🌱 Eco-Lab Game
+      </button>
+      <button onclick="switchTab('impact')" id="btn-impact" class="tab-btn px-4 py-2 font-bold rounded-xl text-gray-600 hover:bg-emerald-50 transition">
+        📊 Eco-Impact
+      </button>
+      <button onclick="switchTab('certificate')" id="btn-certificate" class="tab-btn px-4 py-2 font-bold rounded-xl text-gray-600 hover:bg-pink-50 transition">
+        🏅 Certificate
+      </button>
+    </nav>
+  </div>
+
+  <!-- Main Content Area -->
+  <main class="max-w-4xl mx-auto px-4 mt-6">
+
+    <!-- TAB 1: CAREER PROFILE -->
+    <section id="tab-content-profile" class="tab-content space-y-6">
+      <div class="bg-white p-6 md:p-8 rounded-3xl card-shadow border-2 border-emerald-100">
+        <div class="flex items-center gap-3 mb-4">
+          <div class="p-3 bg-pink-100 rounded-2xl text-pink-500 text-2xl">💡</div>
+          <h2 class="text-2xl font-bold text-emerald-700">What is an Environmental Chemist?</h2>
+        </div>
+        <p class="text-gray-600 text-lg leading-relaxed mb-4">
+          An <strong class="text-emerald-600">Environmental Chemist</strong> is a scientist who protects our planet! They study soil, air, and water to find toxins and use nature and science to clean them up.
+        </p>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-6">
+          <div class="bg-emerald-50 p-4 rounded-2xl border border-emerald-200">
+            <h3 class="font-bold text-emerald-800 text-lg mb-1">🌊 Water Testing</h3>
+            <p class="text-gray-600 text-sm">Testing rivers and oceans to make water safe for animals and humans.</p>
+          </div>
+          <div class="bg-pink-50 p-4 rounded-2xl border border-pink-200">
+            <h3 class="font-bold text-pink-700 text-lg mb-1">🌱 Soil Healing</h3>
+            <p class="text-gray-600 text-sm">Using special plants to naturally absorb toxins from polluted ground.</p>
+          </div>
+          <div class="bg-emerald-50 p-4 rounded-2xl border border-emerald-200">
+            <h3 class="font-bold text-emerald-800 text-lg mb-1">💨 Clean Air</h3>
+            <p class="text-gray-600 text-sm">Measuring air quality and helping factories reduce chemical waste.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 2: WORD PUZZLE -->
+    <section id="tab-content-puzzle" class="tab-content hidden space-y-6">
+      <div class="bg-white p-6 md:p-8 rounded-3xl card-shadow border-2 border-emerald-100 text-center">
+        <h2 class="text-2xl font-bold text-emerald-700 mb-2">Periodic Element Word Puzzle</h2>
+        <p class="text-gray-600 mb-6">Can you spell cool words using element symbols from the Periodic Table?</p>
+
+        <div class="bg-soft-pink p-6 rounded-2xl mb-6">
+          <h3 class="font-bold text-pink-600 mb-4 text-xl">Target Word: <span id="target-word" class="text-emerald-600 underline">ICONIC</span></h3>
+          <div class="flex justify-center gap-2 mb-4" id="word-slots">
+            <!-- Dynamically Built Elements -->
+          </div>
+          <p id="puzzle-feedback" class="text-emerald-700 font-bold min-h-[24px]"></p>
+        </div>
+
+        <div class="flex flex-wrap justify-center gap-2" id="element-buttons">
+          <!-- Buttons dynamically injected -->
+        </div>
+
+        <div class="mt-8 bg-emerald-50 p-4 rounded-2xl text-left border border-emerald-200">
+          <h4 class="font-bold text-emerald-800 flex items-center gap-2">
+            <span>🔍</span> Fun Periodic Table Fact:
+          </h4>
+          <p class="text-gray-600 text-sm mt-1">
+            Did you know the letters <strong>"J"</strong> and <strong>"Q"</strong> are the only letters NEVER used as symbols in the Periodic Table!
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 3: ECO-LAB GAME -->
+    <section id="tab-content-lab" class="tab-content hidden space-y-6">
+      <div class="bg-white p-6 md:p-8 rounded-3xl card-shadow border-2 border-emerald-100">
+        <h2 class="text-2xl font-bold text-emerald-700 mb-2 text-center">Soil & Water Remediation Lab</h2>
+        <p class="text-gray-600 text-center mb-6">Select a bio-remediation tool, then click the matching polluted land to clean it!</p>
+
+        <!-- Tool Selection -->
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-3 mb-6">
+          <button onclick="selectTool('Sunflower')" id="tool-Sunflower" class="tool-btn p-3 rounded-2xl border-2 border-gray-200 hover:border-emerald-400 bg-white text-center transition">
+            <span class="text-3xl block">🌻</span>
+            <span class="font-bold text-sm text-emerald-800">Sunflower</span>
+            <span class="text-xs block text-gray-500">Absorbs Metals</span>
+          </button>
+          <button onclick="selectTool('Fern')" id="tool-Fern" class="tool-btn p-3 rounded-2xl border-2 border-gray-200 hover:border-emerald-400 bg-white text-center transition">
+            <span class="text-3xl block">🌿</span>
+            <span class="font-bold text-sm text-emerald-800">Brake Fern</span>
+            <span class="text-xs block text-gray-500">Extracts Arsenic</span>
+          </button>
+          <button onclick="selectTool('Poplar')" id="tool-Poplar" class="tool-btn p-3 rounded-2xl border-2 border-gray-200 hover:border-emerald-400 bg-white text-center transition">
+            <span class="text-3xl block">🌲</span>
+            <span class="font-bold text-sm text-emerald-800">Poplar Tree</span>
+            <span class="text-xs block text-gray-500">Cleans Oil</span>
+          </button>
+          <button onclick="selectTool('Lime')" id="tool-Lime" class="tool-btn p-3 rounded-2xl border-2 border-gray-200 hover:border-emerald-400 bg-white text-center transition">
+            <span class="text-3xl block">🧪</span>
+            <span class="font-bold text-sm text-emerald-800">Bio-Lime</span>
+            <span class="text-xs block text-gray-500">Fixes Acid</span>
+          </button>
+        </div>
+
+        <!-- Progress Bar -->
+        <div class="mb-6 bg-gray-100 p-4 rounded-2xl">
+          <div class="flex justify-between font-bold text-sm mb-1">
+            <span class="text-emerald-700">Total Cleanup Purity:</span>
+            <span id="purity-text" class="text-pink-500">0%</span>
+          </div>
+          <div class="w-full bg-gray-200 h-4 rounded-full overflow-hidden">
+            <div id="purity-bar" class="bg-emerald-400 h-full w-0 transition-all duration-500"></div>
+          </div>
+        </div>
+
+        <!-- Land Plots -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4" id="land-plots">
+          <!-- Dynamically filled plots -->
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 4: ECO-IMPACT CALCULATOR -->
+    <section id="tab-content-impact" class="tab-content hidden space-y-6">
+      <div class="bg-white p-6 md:p-8 rounded-3xl card-shadow border-2 border-emerald-100">
+        <h2 class="text-2xl font-bold text-emerald-700 mb-2 text-center">Green Impact Calculator</h2>
+        <p class="text-gray-600 text-center mb-6">See how much oxygen and clean soil plants can produce over time!</p>
+
+        <div class="space-y-6 max-w-xl mx-auto">
+          <div>
+            <label class="font-bold text-emerald-800 block mb-2">Number of Plants Grown: <span id="plant-count-val" class="text-pink-500 font-extrabold text-xl">10</span></label>
+            <input type="range" id="plant-slider" min="1" max="100" value="10" oninput="calculateImpact()" class="w-full accent-emerald-500 h-2 bg-emerald-100 rounded-lg appearance-none cursor-pointer">
+          </div>
+
+          <div class="grid grid-cols-2 gap-4 text-center">
+            <div class="bg-pink-50 p-4 rounded-2xl border border-pink-200">
+              <span class="text-3xl block">🌬️</span>
+              <span id="impact-o2" class="text-2xl font-bold text-pink-600 block">50</span>
+              <span class="text-xs text-gray-500 font-bold">Liters of O₂ Produced/Day</span>
+            </div>
+            <div class="bg-emerald-50 p-4 rounded-2xl border border-emerald-200">
+              <span class="text-3xl block">☣️</span>
+              <span id="impact-toxin" class="text-2xl font-bold text-emerald-600 block">20</span>
+              <span class="text-xs text-gray-500 font-bold">Grams Toxins Absorbed</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 5: CERTIFICATE -->
+    <section id="tab-content-certificate" class="tab-content hidden space-y-6">
+      <div class="bg-white p-6 md:p-8 rounded-3xl card-shadow border-2 border-pink-100">
+        <h2 class="text-2xl font-bold text-pink-600 mb-2 text-center">Get Your Eco-Chemist Badge</h2>
+        <p class="text-gray-600 text-center mb-6">Type your name and choose your title to generate your official badge!</p>
+
+        <div class="max-w-md mx-auto space-y-4 mb-8">
+          <div>
+            <label class="block text-gray-700 font-bold mb-1 text-sm">Your Name:</label>
+            <input type="text" id="user-name-input" placeholder="Enter your name..." oninput="updateCertificate()" class="w-full px-4 py-3 rounded-xl border-2 border-pink-200 focus:border-pink-400 outline-none font-bold text-gray-700">
+          </div>
+
+          <div>
+            <label class="block text-gray-700 font-bold mb-1 text-sm">Select Your Title:</label>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-2">
+              <button onclick="setTitle('ICONIC')" class="title-btn border-2 border-pink-300 rounded-xl p-2 font-bold text-pink-600 hover:bg-pink-50">ICONIC</button>
+              <button onclick="setTitle('CUTE')" class="title-btn border-2 border-pink-300 rounded-xl p-2 font-bold text-pink-600 hover:bg-pink-50">CUTE</button>
+              <button onclick="setTitle('HERO')" class="title-btn border-2 border-pink-300 rounded-xl p-2 font-bold text-pink-600 hover:bg-pink-50">HERO</button>
+              <button onclick="setTitle('GENIUS')" class="title-btn border-2 border-pink-300 rounded-xl p-2 font-bold text-pink-600 hover:bg-pink-50">GENIUS</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Printable Certificate Area -->
+        <div id="certificate-area" class="bg-gradient-to-br from-emerald-50 via-white to-pink-50 border-8 border-double border-emerald-300 p-8 rounded-3xl text-center max-w-lg mx-auto relative shadow-inner">
+          <div class="text-4xl mb-2">🌿 🔬 🌸</div>
+          <h3 class="text-xl font-bold text-gray-500 uppercase tracking-widest">Certificate of Achievement</h3>
+          <p class="text-sm text-gray-400 mb-4">English Career Exhibition 2026</p>
+          
+          <p class="text-gray-600">This certifies that</p>
+          <h4 id="cert-name" class="text-3xl font-extrabold text-emerald-600 my-2 font-heading">YOUR NAME</h4>
+          <p class="text-gray-600">is officially named an</p>
+          
+          <div class="my-3 inline-block bg-pink-100 border-2 border-pink-300 text-pink-600 font-black px-6 py-1 rounded-full text-lg tracking-wider" id="cert-title">
+            ICONIC ECO-CHEMIST
+          </div>
+          
+          <p class="text-xs text-gray-500 mt-4">Recognized for solving environmental challenges using green chemistry science!</p>
+        </div>
+
+        <div class="text-center mt-6">
+          <button onclick="window.print()" class="bg-emerald-500 hover:bg-emerald-600 text-white font-bold px-8 py-3 rounded-2xl shadow-lg transition">
+            🖨️ Print Badge
+          </button>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <script>
+    // TAB SWITCHING LOGIC
+    function switchTab(tabId) {
+      document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
+      document.querySelectorAll('.tab-btn').forEach(btn => {
+        btn.classList.remove('bg-emerald-100', 'text-emerald-700');
+        btn.classList.add('text-gray-600');
+      });
+
+      document.getElementById('tab-content-' + tabId).classList.remove('hidden');
+      const activeBtn = document.getElementById('btn-' + tabId);
+      activeBtn.classList.add('bg-emerald-100', 'text-emerald-700');
+    }
+
+    // WORD PUZZLE LOGIC
+    const puzzleData = {
+      word: "ICONIC",
+      elements: [
+        { symbol: "I", name: "Iodine" },
+        { symbol: "Co", name: "Cobalt" },
+        { symbol: "Ni", name: "Nickel" },
+        { symbol: "C", name: "Carbon" }
+      ]
+    };
+    let currentSelection = [];
+
+    function initPuzzle() {
+      const slotsContainer = document.getElementById('word-slots');
+      const btnsContainer = document.getElementById('element-buttons');
+      slotsContainer.innerHTML = '';
+      btnsContainer.innerHTML = '';
+
+      puzzleData.elements.forEach((el, index) => {
+        const slot = document.createElement('div');
+        slot.className = "w-14 h-16 bg-white border-2 border-dashed border-pink-300 rounded-xl flex flex-col items-center justify-center font-bold text-gray-400";
+        slot.id = `slot-${index}`;
+        slot.innerText = "?";
+        slotsContainer.appendChild(slot);
+
+        const btn = document.createElement('button');
+        btn.className = "px-4 py-2 bg-emerald-100 hover:bg-emerald-200 text-emerald-800 font-bold rounded-xl border border-emerald-300 transition";
+        btn.innerText = el.symbol;
+        btn.onclick = () => selectElement(el, index, btn);
+        btnsContainer.appendChild(btn);
+      });
+    }
+
+    function selectElement(el, index, btn) {
+      const slot = document.getElementById(`slot-${currentSelection.length}`);
+      if (slot && currentSelection.length < puzzleData.elements.length) {
+        slot.className = "w-14 h-16 bg-emerald-500 text-white rounded-xl flex flex-col items-center justify-center font-bold text-lg shadow-md";
+        slot.innerText = el.symbol;
+        currentSelection.push(el.symbol);
+        btn.disabled = true;
+        btn.classList.add('opacity-40');
+
+        if (currentSelection.length === puzzleData.elements.length) {
+          document.getElementById('puzzle-feedback').innerText = "🎉 Great Job! You spelled ICONIC using Chemistry elements!";
+        }
+      }
+    }
+
+    // ECO-LAB GAME LOGIC
+    let selectedTool = null;
+    const labPlots = [
+      { id: 1, name: "Old Mining Site", pollutant: "Heavy Metals", needed: "Sunflower", cleaned: false },
+      { id: 2, name: "River Bank", pollutant: "Arsenic Waste", needed: "Fern", cleaned: false },
+      { id: 3, name: "Factory Zone", pollutant: "Oil Solvents", needed: "Poplar", cleaned: false },
+      { id: 4, name: "Acidic Farming Field", pollutant: "High Acid", needed: "Lime", cleaned: false }
+    ];
+
+    function selectTool(toolName) {
+      selectedTool = toolName;
+      document.querySelectorAll('.tool-btn').forEach(b => b.classList.remove('border-emerald-500', 'bg-emerald-50'));
+      const activeToolBtn = document.getElementById(`tool-${toolName}`);
+      if (activeToolBtn) {
+        activeToolBtn.classList.add('border-emerald-500', 'bg-emerald-50');
+      }
+    }
+
+    function renderPlots() {
+      const container = document.getElementById('land-plots');
+      container.innerHTML = '';
+
+      labPlots.forEach(plot => {
+        const div = document.createElement('div');
+        div.className = `p-4 rounded-2xl border-2 cursor-pointer transition ${
+          plot.cleaned ? 'bg-emerald-50 border-emerald-300' : 'bg-pink-50 border-pink-200'
+        }`;
+        div.onclick = () => applyToolToPlot(plot);
+
+        div.innerHTML = `
+          <div class="flex justify-between items-center mb-2">
+            <h4 class="font-bold text-gray-800">${plot.name}</h4>
+            <span class="text-xs font-bold px-2 py-1 rounded-full ${plot.cleaned ? 'bg-emerald-200 text-emerald-800' : 'bg-pink-200 text-pink-800'}">
+              ${plot.cleaned ? 'Cleaned 🌸' : 'Polluted ☣️'}
+            </span>
+          </div>
+          <p class="text-sm text-gray-600">Pollutant: <strong>${plot.pollutant}</strong></p>
+        `;
+        container.appendChild(div);
+      });
+
+      updatePurity();
+    }
+
+    function applyToolToPlot(plot) {
+      if (!selectedTool) {
+        alert("Please choose a tool from above first!");
+        return;
+      }
+      if (plot.needed === selectedTool) {
+        plot.cleaned = true;
+        renderPlots();
+      } else {
+        alert("Wrong tool for this pollutant! Try another one.");
+      }
+    }
+
+    function updatePurity() {
+      const cleanedCount = labPlots.filter(p => p.cleaned).length;
+      const percentage = (cleanedCount / labPlots.length) * 100;
+      document.getElementById('purity-text').innerText = percentage + '%';
+      document.getElementById('purity-bar').style.width = percentage + '%';
+    }
+
+    // ECO-IMPACT CALCULATOR
+    function calculateImpact() {
+      const val = document.getElementById('plant-slider').value;
+      document.getElementById('plant-count-val').innerText = val;
+      document.getElementById('impact-o2').innerText = val * 5;
+      document.getElementById('impact-toxin').innerText = val * 2;
+    }
+
+    // CERTIFICATE LOGIC
+    let selectedTitleWord = "ICONIC";
+
+    function setTitle(title) {
+      selectedTitleWord = title;
+      updateCertificate();
+    }
+
+    function updateCertificate() {
+      const name = document.getElementById('user-name-input').value.trim();
+      document.getElementById('cert-name').innerText = name ? name.toUpperCase() : "YOUR NAME";
+      document.getElementById('cert-title').innerText = `${selectedTitleWord} ECO-CHEMIST`;
+    }
+
+    // INITIALIZE ON LOAD
+    window.onload = () => {
+      initPuzz
